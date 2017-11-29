@@ -71,11 +71,11 @@ module Spree
         end
 
       included_rates = rates.select(&:included_in_price)
-      if included_rates.any?
+      if pre_tax_amount.present? && included_rates.any?
         pre_tax_amount /= (1 + included_rates.map(&:amount).sum)
       end
 
-      item.update_column(:pre_tax_amount, pre_tax_amount)
+      item.update_column(:pre_tax_amount, pre_tax_amount.to_i)
     end
 
     # This method is best described by the documentation on #potentially_applicable?
