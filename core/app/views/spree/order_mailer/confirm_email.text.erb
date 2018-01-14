@@ -36,3 +36,12 @@
 <%= Spree.t('order_mailer.confirm_email.total') %> <%= @order.display_total %>
 
 <%= Spree.t('order_mailer.confirm_email.thanks') %>
+
+<%- if @order.payments.last.payment_method.type == "Spree::PaymentMethod::BankTransfer" -%>
+    Bankdata
+
+    Dr. Gernot Ullrich
+    DE88 2005 0550 1258 4761 57
+
+    Subject: <%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%>
+<%- end -%>
