@@ -2,7 +2,7 @@ module Spree
   module BaseHelper
 
     def available_countries
-      checkout_zone = Zone.find_by(name: Spree::Config[:checkout_zone])
+      checkout_zone = Zone.where(name: Spree::Config[:checkout_zone]).first
 
       if checkout_zone && checkout_zone.kind == 'country'
         countries = checkout_zone.country_list
