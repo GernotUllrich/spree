@@ -84,5 +84,5 @@
 </table>
 <%- if @order.payments.last.payment_method.type == "Spree::PaymentMethod::BankTransfer" -%>
     <p>Bankdata</p>
-    <p>Dr. Gernot Ullrich<b />DE88 2005 0550 1258 4761 57<b />Subject: <strong><%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
+    <p>Dr. Gernot Ullrich<br />DE88 2005 0550 1258 4761 57<br />Subject: <strong><%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
 <%- end -%>
