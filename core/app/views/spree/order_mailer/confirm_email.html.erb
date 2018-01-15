@@ -85,6 +85,6 @@
 <%- if @order.payments.last.payment_method.type == "Spree::PaymentMethod::BankTransfer" -%>
     <p><%= Spree.t(:our_bank_data) %></p>
     <% Spree::Bank.active.each do |bank| %>
-        <p><%= bank.name %><br /><%= bank.account_no %><br />Subject: <strong><%= order.number -%>, <%= order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
+        <p><%= bank.name %><br /><%= bank.account_no %><br />Subject: <strong><%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
     <% end %>
 <%- end -%>
