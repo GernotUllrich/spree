@@ -1,16 +1,22 @@
 <% source = payment.source %>
+<% order = payment.order %>
 
 <% if source.is_a?(Spree::CreditCard) %>
-  <span class="cc-type">
+    <span class="cc-type">
     <% unless (cc_type = source.cc_type).blank? %>
       <%= image_tag "credit_cards/icons/#{cc_type}.png" %>
     <% end %>
-    <% if source.last_digits %>
+      <% if source.last_digits %>
       <%= Spree.t(:ending_in) %> <%= source.last_digits %>
     <% end %>
   </span>
-  <br />
-  <span class="full-name"><%= source.name %></span>
+    <br/>
+    <span class="full-name"><%= source.name %></span>
+<% elsif payment.payment_method.type == "Spree::PaymentMethod::BankTransfer" %>
+    <p><%= Spree.t(:our_bank_data) %></p>
+    <% Spree::Bank.active.each do |bank| %>
+        <p><%= bank.name %><br /><%= bank.account_no %><br />Subject: <strong><%= order.number -%>, <%= order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
+    <% end %>
 <% else %>
-  <%= content_tag(:span, payment.payment_method.name) %>
+    <%= content_tag(:span, payment.payment_method.name) %>
 <% end %>
