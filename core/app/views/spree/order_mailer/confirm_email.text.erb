@@ -43,6 +43,6 @@
 
         <%= bank.name %>
         <%= bank.account_no %>
-        Subject: <strong><%= order.number -%>, <%= order.user.andand.email.to_s.gsub("@", "(at)") -%></strong>
+        Subject: <strong><%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%></strong>
     <% end %>
 <%- end -%>
