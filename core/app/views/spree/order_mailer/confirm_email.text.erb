@@ -38,11 +38,13 @@
 <%= Spree.t('order_mailer.confirm_email.thanks') %>
 
 <%- if @order.payments.last.payment_method.type == "Spree::PaymentMethod::BankTransfer" -%>
-    <p><%= Spree.t(:our_bank_data) %></p>
+    <%= Spree.t(:our_bank_data) %>
     <% Spree::Bank.active.each do |bank| %>
 
         <%= bank.name %>
         <%= bank.account_no %>
-        Subject: <strong><%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%></strong>
+        Subject: ** <%= @order.number -%>, <%= @order.user.andand.email.to_s.gsub("@", "(at)") -%> **
     <% end %>
+
+    <%= Spree.t(:our_action) %>
 <%- end -%>

@@ -18,6 +18,7 @@
     <% Spree::Bank.active.each do |bank| %>
         <p><%= bank.name %><br /><%= bank.account_no %><br />Subject: <strong><%= order.number -%>, <%= order.user.andand.email.to_s.gsub("@", "(at)") -%></strong></p>
     <% end %>
+    <p><%= Spree.t(:our_action) %></p>
 <% else %>
     <%= content_tag(:span, payment.payment_method.name) %>
 <% end %>
